@@ -1,38 +1,41 @@
 name: Demucs Audio Separation
 
-on: workflow_dispatch:
+on:
+  workflow_dispatch:
 
-jobs: separate: runs-on: ubuntu-latest
+jobs:
+  separate:
+    runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  - name: Setup Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: "3.11"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-  - name: Install FFmpeg
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y ffmpeg
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
 
-  - name: Install Dependencies
-    run: |
-      python -m pip install --upgrade pip
-      pip install demucs
-      pip install torchcodec
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install demucs
+          pip install torchcodec
 
-  - name: Check Input
-    run: |
-      ls -lah input
+      - name: Check Input
+        run: |
+          ls -lah input
 
-  - name: Separate Audio
-    run: |
-      demucs --two-stems vocals input/song.mp3
+      - name: Separate Audio
+        run: |
+          demucs --two-stems vocals input/song.mp3
 
-  - name: Upload Results
-    uses: actions/upload-artifact@v4
-    with:
-      name: demucs-output
-      path: separated/
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: demucs-output
+          path: separated/
