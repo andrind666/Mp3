@@ -1,0 +1,47 @@
+name: Demucs Audio Separation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  separate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt update
+          sudo apt install -y ffmpeg
+
+      - name: Install Demucs
+        run: |
+          pip install --upgrade pip
+          pip install demucs
+
+      - name: Create Input Directory
+        run: |
+          mkdir -p input
+
+      - name: Check Audio File
+        run: |
+          ls -lah input
+
+      - name: Separate Audio
+        run: |
+          demucs \
+            --two-stems=vocals \
+            input/song.mp3
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: demucs-output
+          path: separated/**
