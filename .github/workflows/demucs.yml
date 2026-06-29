@@ -1,4 +1,4 @@
-name: Demucs Audio Separation
+name: Demucs 6 Stem Separation
 
 on:
   workflow_dispatch:
@@ -30,9 +30,15 @@ jobs:
         run: |
           ls -lah input
 
-      - name: Separate Audio
+      - name: Separate Audio (6 Stem)
         run: |
-          demucs --two-stems vocals input/song.mp3
+          demucs \
+            --name htdemucs_6s \
+            --float32 \
+            --segment 8 \
+            --overlap 0.5 \
+            --out separated \
+            input/song.mp3
 
       - name: Upload Results
         uses: actions/upload-artifact@v4
