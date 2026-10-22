@@ -1,5 +1,1 @@
-# Format: Topik | Niche
-# Baris yang diawali # akan diabaikan oleh program
-Misteri Hilangnya Peradaban Atlantis | Misteri & Sejarah
-Misteri Segitiga Bermuda | Misteri & Sains
-Kisah Kerajaan Majapahit | Sejarah
+Cerita horror pocong terbalik yang seram kepala di bawah | Misteri & Horror
