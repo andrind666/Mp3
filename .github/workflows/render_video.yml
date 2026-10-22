@@ -28,7 +28,7 @@ jobs:
 
     - name: Render Video
       env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.AQ.Ab8RN6JIwg16t2ZhA_v93b2LY7DLqeFsfHsW5CIaeRoKG0SyuQ }}
       run: |
         python main.py
 
